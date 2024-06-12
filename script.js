@@ -34,12 +34,28 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     // Agregar texto al nuevo PDF
     const formPage = newPdf.getPage(0);
     const { width, height } = formPage.getSize();
-    formPage.drawText(requisitoDocumental, { x: 250, y: height - 190, size: 12 });
-    formPage.drawText(proveedor, { x: 250, y: height - 248, size: 12 });
-    formPage.drawText(numeroPedido, { x: 250, y: height - 303, size: 12 });
-    formPage.drawText(fecha, { x: 250, y: height - 360, size: 12 });
-    formPage.drawText(numeroPieza, { x: 250, y: height - 417, size: 12 });
-    formPage.drawText(cantidad, { x: 250, y: height - 475, size: 12 });
+
+    // Definir tamaño del texto
+    const textSize = 17;
+    const titleSize = 32;
+
+    // Obtener la fuente 
+    const font = await newPdf.embedFont(PDFLib.StandardFonts.Helvetica);
+    const fontBold = await newPdf.embedFont(PDFLib.StandardFonts.HelveticaBold);
+
+    // Función para centrar texto
+    const drawCenteredText = (text, y, size, font) => {
+      const textWidth = font.widthOfTextAtSize(text, size);
+      const x = (width - textWidth) / 2 + 100;
+      formPage.drawText(text, { x, y, size, font });
+    };
+
+    drawCenteredText(requisitoDocumental, height - 195, titleSize, fontBold);
+    drawCenteredText(proveedor, height - 248, textSize, font);
+    drawCenteredText(numeroPedido, height - 303, textSize, font);
+    drawCenteredText(fecha, height - 360, textSize, font);
+    drawCenteredText(numeroPieza, height - 419, textSize, font);
+    drawCenteredText(cantidad, height - 475, textSize, font);
 
     // Cargar el PDF subido por el usuario
     const pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
