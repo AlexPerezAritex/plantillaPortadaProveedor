@@ -2,12 +2,12 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
   // Obtener el archivo PDF cargado por el usuario
   const pdfUpload = document.getElementById('pdf-upload').files[0];
   // Obtener los datos del formulario
-  const requisitoDocumental = document.getElementById('requisitoDocumental').value;
-  const proveedor = document.getElementById('proveedor').value;
-  const numeroPedido = document.getElementById('numeroPedido').value;
-  const fecha = document.getElementById('fecha').value;
-  const numeroPieza = document.getElementById('numeroPieza').value;
-  const cantidad = document.getElementById('cantidad').value;
+  const requisitoDocumental = document.getElementById('requisitoDocumental').value.toUpperCase();
+  const proveedor = document.getElementById('proveedor').value.toUpperCase();
+  const numeroPedido = document.getElementById('numeroPedido').value.toUpperCase();
+  const fecha = document.getElementById('fecha').value.toUpperCase();
+  const numeroPieza = document.getElementById('numeroPieza').value.toUpperCase();
+  const cantidad = document.getElementById('cantidad').value.toUpperCase();
 
   // Verificar si se ha cargado un PDF
   if (!pdfUpload) {
