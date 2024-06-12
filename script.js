@@ -1,3 +1,11 @@
+const fechaActual = new Date()
+
+console.log(fechaActual)
+
+document.querySelector('#fecha').valueAsDate = fechaActual
+
+
+
 document.getElementById('submit-btn').addEventListener('click', async () => {
   // Obtener el archivo PDF cargado por el usuario
   const pdfUpload = document.getElementById('pdf-upload').files[0];
@@ -5,7 +13,25 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
   const requisitoDocumental = document.getElementById('requisitoDocumental').value.toUpperCase();
   const proveedor = document.getElementById('proveedor').value.toUpperCase();
   const numeroPedido = document.getElementById('numeroPedido').value.toUpperCase();
-  const fecha = document.getElementById('fecha').value.toUpperCase();
+  const fechaInput = document.getElementById('fecha').value;
+  const date = new Date(fechaInput)
+  
+  let dia = ''
+  let mes = ''
+  if(date.getDate()<10){
+    dia =  "0" + date.getDate()
+  }else{
+    dia = date.getDate()
+  }
+  if(date.getMonth()<9){
+    mes =  "0" + (date.getMonth()+1)
+  }else{
+    mes = (date.getMonth()+1)
+  }
+
+  const fecha = dia + '/' + mes + '/' + date.getFullYear()
+  
+
   const numeroPieza = document.getElementById('numeroPieza').value.toUpperCase();
   const cantidad = document.getElementById('cantidad').value.toUpperCase();
 
@@ -74,7 +100,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
     // Crear un enlace de descarga y simular el clic
     const downloadLink = document.createElement('a');
     downloadLink.href = url;
-    downloadLink.download = 'nuevo_pdf.pdf';
+    downloadLink.download =  `${requisitoDocumental}_${numeroPieza}.pdf`;
     downloadLink.click();
 
     // Liberar memoria
