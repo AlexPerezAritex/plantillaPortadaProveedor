@@ -84,31 +84,36 @@
         </tr>
         <tr class="border-1">
           <th class="text-start border-1 bg-secondary bg-opacity-25 p-2">
-            <label for="numeroPieza" class="form-label">
+            <label for="numeroPieza1" class="form-label">
               <p class="pt-1 my-0">Nº Pieza:</p>
               <p class="my-0">Part Number:</p>
             </label>
           </th>
           <td class="border-1 ">
-            <input type="text" id="numeroPieza" maxlength="27"
+            <input type="text" id="numeroPieza1" maxlength="27"
               class="form-control border-0 m-0 py-3 rounded-0 text-center text-uppercase " style="font-size: 2em;">
           </td>
         </tr>
         <tr class="border-1">
           <th class="text-start border-1 bg-secondary bg-opacity-25 p-2">
-            <label for="cantidad" class="form-label">
+            <label for="cantidad1" class="form-label">
               <p class="pt-1 my-0">Cantidad:</p>
               <p class="my-0">Quantity:</p>
             </label></th>
           <td class="border-1 ">
-            <input type="text" id="cantidad" maxlength="27"
+            <input type="text" id="cantidad1" maxlength="27"
               class="form-control border-0 m-0 py-3 rounded-0 text-center text-uppercase " style="font-size: 2em;">
           </td>
         </tr>
+
       </table>
-      <div class="d-flex ms-5 mt-2 mb-3">
+      <div class="d-flex ps-5 mt-2 mb-3 ">
         <input type="file" class="btn btn-primary me-2" id="pdf-upload" accept="application/pdf" required>
         <button type="button" class="btn btn-primary" id="submit-btn">Download</button>
+        <div class=" py-0 w-100 d-flex justify-content-end" style="padding-right: 2.5em;">
+          <button type="button" class="btn btn-primary h-100 " id="add-pieza-btn" >Add part +</button >
+        </div>
+        
       </div>
 
     </form>

@@ -4,6 +4,57 @@ console.log(fechaActual)
 
 document.querySelector('#fecha').valueAsDate = fechaActual
 
+const obj={
+  requisitoDocumental:'',
+  proveedor:'',
+  numeroPedido:'',
+  fecha:'',
+  numeroPieza:'',
+  cantidad:''
+}
+
+const array = []
+array.push({})
+
+document.querySelector('#add-pieza-btn').addEventListener('click', ()=>{
+  let tr1 = document.createElement("tr");
+  tr1.classList.add('border-1')
+ 
+  
+  let tr2 = document.createElement("tr");
+  tr2.classList.add('border-1')
+  const htmltr1 = `
+          <th class="text-start border-1 bg-secondary bg-opacity-25 p-2">
+            <label for="numeroPieza${array.length+1}" class="form-label">
+              <p class="pt-1 my-0">${array.length+1} Nº Pieza:</p>
+              <p class="my-0">Part Number:</p>
+            </label>
+          </th>
+          <td class="border-1 ">
+            <input type="text" id="numeroPieza${array.length+1}" maxlength="27"
+              class="form-control border-0 m-0 py-3 rounded-0 text-center text-uppercase " style="font-size: 2em;">
+          </td>
+        `
+      const htmltr2 =  `
+          <th class="text-start border-1 bg-secondary bg-opacity-25 p-2">
+            <label for="cantidad${array.length+1}" class="form-label">
+              <p class="pt-1 my-0">Cantidad:</p>
+              <p class="my-0">Quantity:</p>
+            </label></th>
+          <td class="border-1 ">
+            <input type="text" id="cantidad${array.length+1}" maxlength="27"
+              class="form-control border-0 m-0 py-3 rounded-0 text-center text-uppercase " style="font-size: 2em;">
+          </td>
+        `
+        tr1.innerHTML = htmltr1
+        tr2.innerHTML = htmltr2
+        const table1 = document.querySelector('table')
+        table1.appendChild(tr1)
+        const table2 = document.querySelector('table')
+        table2.appendChild(tr2)
+        
+  array.push({})
+})
 
 
 document.getElementById('submit-btn').addEventListener('click', async () => {
@@ -31,9 +82,21 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
 
   const fecha = dia + '/' + mes + '/' + date.getFullYear()
   
+  array.map((element, index) =>{
+    const numeroPieza = document.getElementById('numeroPieza'+(index+1)).value.toUpperCase();
+    const cantidad = document.getElementById('cantidad'+(index+1)).value.toUpperCase();
+    
+    obj.requisitoDocumental = requisitoDocumental
+    obj.proveedor = proveedor
+    obj.numeroPedido = numeroPedido
+    obj.fecha = fecha
+    obj.numeroPieza = numeroPedido
+    obj.cantidad = cantidad
+    
+    element = obj
+  })
 
-  const numeroPieza = document.getElementById('numeroPieza').value.toUpperCase();
-  const cantidad = document.getElementById('cantidad').value.toUpperCase();
+  
 
   // Verificar si se ha cargado un PDF
   if (!pdfUpload) {
