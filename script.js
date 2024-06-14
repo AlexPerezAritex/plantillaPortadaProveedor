@@ -17,10 +17,11 @@ const array = [{}];
 
 document.querySelector('#add-pieza-btn').addEventListener('click', () => {
   let tr1 = document.createElement("tr");
-  tr1.classList.add('border-1')
+  tr1.classList.add('border-1', `numeroPieza${array.length + 1}`)
+  
 
   let tr2 = document.createElement("tr");
-  tr2.classList.add('border-1')
+  tr2.classList.add('border-1', `cantidad${array.length + 1}`)
   const htmltr1 = `
     <th class="text-start border-1 bg-secondary bg-opacity-25 p-2">
       <label for="numeroPieza${array.length + 1}" class="form-label">
@@ -52,6 +53,17 @@ document.querySelector('#add-pieza-btn').addEventListener('click', () => {
 
   array.push({});
 });
+
+document.querySelector('#remove-pieza-btn').addEventListener('click', () => {
+  const table1 = document.querySelector('table');
+  const tr1 = document.querySelector(`.numeroPieza${array.length}`)
+  const tr2 = document.querySelector(`.cantidad${array.length}`)
+
+  table1.removeChild(tr2)
+  table1.removeChild(tr1)
+  array.pop()
+})
+
 
 document.getElementById('submit-btn').addEventListener('click', async () => {
   const requisitoDocumental = document.getElementById('requisitoDocumental').value.toUpperCase();
